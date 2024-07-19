@@ -12,15 +12,13 @@ const Chatbot = () => {
     const newMessages = [...messages, { text, sender: 'user' }];
     setMessages(newMessages);
 
-    // Mock response
     const botResponse = await getBotResponse(text);
     setMessages([...newMessages, { text: botResponse, sender: 'bot' }]);
   };
 
   const getBotResponse = async (message) => {
     try {
-      // You can replace this with a call to your backend API
-      const response = await axios.post('https://your-backend-api.com/chat', { message });
+      const response = await axios.post('http://127.0.0.1:5000/chat', { message });
       return response.data.reply;
     } catch (error) {
       console.error(error);
